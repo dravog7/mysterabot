@@ -1,0 +1,7 @@
+[
+    {
+        "name":"UW Detect",
+        "front":"hacks/uwdetect/front.html",
+        "inject":"hacks/uwdetect/uw.js"
+    }
+]

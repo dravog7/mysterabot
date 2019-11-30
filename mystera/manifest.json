@@ -1,0 +1,17 @@
+{
+    "name": "MysterA",
+    "version": "1.0",
+    "description": "A script plugin",
+    "permissions": ["storage","declarativeContent","tabs","http://www.mysteralegacy.com/play/full.php"],
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": false
+    },
+    "page_action": {
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "48": "icon.png"
+    },
+    "manifest_version": 2
+  }

@@ -1,3 +1,5 @@
+//dye
+m=getMob(me)
 window.repkit=0;
 function tog(a)
 {
@@ -12,7 +14,7 @@ async function drop(slot,amt)
         slot: slot,
         amt :amt,
     })
-    await timeout(getMob(me).cur_speed);
+    await timeout(m.cur_speed);
 }
 
 function timeout(ms) {
@@ -27,11 +29,11 @@ async function Up(ctrl,steps)
         tog(keyCtrl);
         steps=1;
     }
-    await timeout(getMob(me).cur_speed*steps);
+    await timeout(m.cur_speed*steps);
     tog(keyUp);
     if(ctrl)
         tog(keyCtrl);
-    await timeout(getMob(me).cur_speed);
+    await timeout(m.cur_speed);
 }
 
 async function Down(ctrl,steps)
@@ -42,11 +44,11 @@ async function Down(ctrl,steps)
         tog(keyCtrl);
         steps=1;
     }
-    await timeout(getMob(me).cur_speed*steps);
+    await timeout(m.cur_speed*steps);
     tog(keyDown);
     if(ctrl)
         tog(keyCtrl);
-    await timeout(getMob(me).cur_speed);
+    await timeout(m.cur_speed);
 }
 
 async function Left(ctrl,steps)
@@ -57,11 +59,11 @@ async function Left(ctrl,steps)
         tog(keyCtrl);
         steps=1;
     }
-    await timeout(getMob(me).cur_speed*steps);
+    await timeout(m.cur_speed*steps);
     tog(keyLeft);
     if(ctrl)
         tog(keyCtrl);
-    await timeout(getMob(me).cur_speed);
+    await timeout(m.cur_speed);
 }
 
 async function Right(ctrl,steps)
@@ -72,11 +74,11 @@ async function Right(ctrl,steps)
         tog(keyCtrl);
         steps=1;
     }
-    await timeout(getMob(me).cur_speed*steps);
+    await timeout(m.cur_speed*steps);
     tog(keyRight);
     if(ctrl)
         tog(keyCtrl);
-    await timeout(getMob(me).cur_speed);
+    await timeout(m.cur_speed);
 }
 
 async function Space()
@@ -115,7 +117,7 @@ async function repair(slot)
     }
     await Up(0,1);
     keyShift.press();
-    await timeout(getMob(me).cur_speed);
+    await timeout(m.cur_speed);
     return true;
 }
 
@@ -146,7 +148,7 @@ async function selfdef()
         if(hp_status.val<100)
         {
             a=mobs.items.find((tar)=>{
-                if((tar)&&(dist(tar.x-getMob(me).x,tar.y-getMob(me).y)<2)&&(dist(tar.x-getMob(me).x,tar.y-getMob(me).y)>0))
+                if((tar)&&(dist(tar.x-m.x,tar.y-m.y)<2)&&(dist(tar.x-m.x,tar.y-m.y)>0))
                     return true;
                 return false;
             });
@@ -177,11 +179,36 @@ async function repkitroll(from,to)
         {
             await drop(slots[count],1)
             keyShift.press();
-            await timeout(getMob(me).cur_speed);
+            await timeout(m.cur_speed);
             key7.press();
             count++;
         }
         await timeout(1000);
     }
     window.repkit=0;
+}
+
+
+async function clicker(){
+keySpace.isDown=1;keySpace.isUp=0;
+await timeout(100);
+keySpace.isDown=0;keySpace.isUp=1;
+}
+
+
+
+async function dye()
+{
+	while(item_data[2].slot)
+	{
+		key1.press();
+		await timeout(m.cur_speed);
+		await clicker();
+		await timeout(500);
+		await drop(0,1);
+		await timeout(500);
+		await drop(2,1);
+		keyShift.press();
+		await timeout(m.cur_speed);
+	}
 }

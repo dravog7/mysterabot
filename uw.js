@@ -1,9 +1,14 @@
 async function uwdetect()
 {
     found=[];
+	count=0;
     title=jv.map_title.text;
-    while(true)
+    function run()
     {
+		requestAnimationFrame(run);
+		count++;
+		if(count%60!=0)
+			return;
         for(i in map_index)
         {
             if((map_index[i].o.length>0)&&(/(Shiny Rock)|(Treasure Chest)|(Glowing Altar)|(Stairs Up)|(Stairway)|(Altar)|(Deep Recall)/.test(map_index[i].o[0].name)))
@@ -23,12 +28,7 @@ async function uwdetect()
             found=[];
             title=jv.map_title.text;
         }
-        await timeout(2000);
-    }
-}
-
-function timeout(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    }run();
 }
 
 // Healing Fountain

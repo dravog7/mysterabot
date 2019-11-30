@@ -1,7 +1,6 @@
 async function chop()
 {
-    maw=getMob(me);
-    prevy=maw.y;
+    pickup();
     tog(keyUp);
     i=0;
     while(keyG.isUp)
@@ -12,21 +11,30 @@ async function chop()
             tog(keyUp);
             return;
         }
-        if(maw.y<prevy)
-        {
-            keyShift.press();
-            await timeout(250);
-            prevy=maw.y
-        }
         await timeout(1000);
         if(brk(1))
         {
             tog(keyUp);
             await repair(1);
             key2.press();
-            await timeout(500);
+            await timeout(getMob(me).cur_speed);
             tog(keyUp);
         }
     }
     tog(keyUp);
+}
+
+async function pickup()
+{
+	prevy=getMob(me).y;
+	while(keyG.isUp)
+	{
+		if(getMob(me).y!=prevy)
+		{
+			await timeout(getMob(me).cur_speed+200);
+			keyShift.press();
+			prevy=getMob(me).y;
+		}
+		await timeout(1000);
+	}
 }

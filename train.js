@@ -1,21 +1,21 @@
 async function hittrain()
 {
     m=getMob(me)
-    while(item_data[8].slot)
+    while(item_data[1].slot)
     {
-        if((map_index[m.x+'0'+(m.y-1)].o[0].hpbar)&&(map_index[m.x+'0'+(m.y-1)].o[0].hpbar.val<300))
+        /*if((map_index[m.x+'0'+(m.y-1)].o[0].hpbar)&&(map_index[m.x+'0'+(m.y-1)].o[0].hpbar.val<300))
         {
             key7.press();
             await checkHP(m);
-            key8.press();
+            key2.press();
             await timeout(500);
-        }
-        if(brk(7))
+        } */
+        if(brk(1))
         {
-            fixed=await repair(7);
+            fixed=await repair(1);
             if(!fixed)
                 return -1;
-            key8.press();
+            key2.press();
             await timeout(500);
         }
         await timeout(1000);

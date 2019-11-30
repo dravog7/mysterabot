@@ -1,61 +1,20 @@
-async function addCoords()
-{
-	m=getMob(me)
-	div=document.createElement("div")
-	div.id="coords"
-	div.style.position="absolute"
-	div.style.color="#FFFFFF"
-	div.style.top="0px"
-	div.style.left="0px"
-	div.style.zIndex="2000"
-	document.body.appendChild(div)
-	setInterval(function(){
-		div.innerHTML="<b> "+m.x+","+m.y+" "+jv.map_title.text+"</b>";
-	},1000);
-}
-
-async function hpmod()
-{
-	setInterval(function(){
-		hp_status.title.text="Health("+hp_status.val+"%)"
-	},1000);
-}
-
-async function hungermod()
-{
-	setInterval(function(){
-		hunger_status.title.text="Hunger("+hunger_status.val+"%)"
-	},1000);
-}
-
-async function skillmod()
-{
-	setInterval(function(){
-		if((skill_status.alpha>0)&&(skill_status.title.text[skill_status.title.text.length-1]!=")"))
-		{
-			skill_status.title.text+="("+skill_status.val+"%)"
-		}
-	},500);
-}
-
 async function allmod()
 {
-	m=getMob(me)
-	div=document.createElement("div")
-	div.id="coords"
-	div.style.position="absolute"
-	div.style.color="#FFFFFF"
-	div.style.top="0px"
-	div.style.left="0px"
-	div.style.zIndex="2000"
-	document.body.appendChild(div)
-	setInterval(function(){
-		hp_status.title.text="Health("+hp_status.val+"%)"
-		hunger_status.title.text="Hunger("+hunger_status.val+"%)"
+	a=jv.text("",{font:"10px Verdana",fill:16777215,stroke:6710886,strokeThickness:1})
+	jv.add(a)
+	function run(){
+		
+		hp_status.title.text="Health("+hp_status.val.toLocaleString()+"%)"
+		hunger_status.title.text="Hunger("+hunger_status.val.toLocaleString()+"%)"
+		exp_status.title.text="Experience("+exp_status.val.toLocaleString()+"%)"
 		if((skill_status.alpha>0)&&(skill_status.title.text[skill_status.title.text.length-1]!=")"))
 		{
-			skill_status.title.text+="("+skill_status.val+"%)"
+			skill_status.title.text+="("+skill_status.val.toLocaleString()+"%)"
 		}
-		div.innerHTML="<b> "+m.x+","+m.y+" "+jv.map_title.text+"</b>";
-	},1000);
+		try{
+		a.text=""+getMob(me).x+","+getMob(me).y+" "+jv.map_title.text+"";
+		}catch(e){};
+		requestAnimationFrame(run);
+	};
+	run();
 }

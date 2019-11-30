@@ -1,3 +1,4 @@
+m=getMob(me)
 window.repkit=0;
 function tog(a)
 {
@@ -12,7 +13,7 @@ async function drop(slot,amt)
         slot: slot,
         amt :amt,
     })
-    await timeout(getMob(me).cur_speed);
+    await timeout(m.cur_speed);
 }
 
 function timeout(ms) {
@@ -27,11 +28,11 @@ async function Up(ctrl,steps)
         tog(keyCtrl);
         steps=1;
     }
-    await timeout(getMob(me).cur_speed*steps);
+    await timeout(m.cur_speed*steps);
     tog(keyUp);
     if(ctrl)
         tog(keyCtrl);
-    await timeout(getMob(me).cur_speed);
+    await timeout(m.cur_speed);
 }
 
 async function Down(ctrl,steps)
@@ -42,11 +43,11 @@ async function Down(ctrl,steps)
         tog(keyCtrl);
         steps=1;
     }
-    await timeout(getMob(me).cur_speed*steps);
+    await timeout(m.cur_speed*steps);
     tog(keyDown);
     if(ctrl)
         tog(keyCtrl);
-    await timeout(getMob(me).cur_speed);
+    await timeout(m.cur_speed);
 }
 
 async function Left(ctrl,steps)
@@ -57,11 +58,11 @@ async function Left(ctrl,steps)
         tog(keyCtrl);
         steps=1;
     }
-    await timeout(getMob(me).cur_speed*steps);
+    await timeout(m.cur_speed*steps);
     tog(keyLeft);
     if(ctrl)
         tog(keyCtrl);
-    await timeout(getMob(me).cur_speed);
+    await timeout(m.cur_speed);
 }
 
 async function Right(ctrl,steps)
@@ -72,11 +73,11 @@ async function Right(ctrl,steps)
         tog(keyCtrl);
         steps=1;
     }
-    await timeout(getMob(me).cur_speed*steps);
+    await timeout(m.cur_speed*steps);
     tog(keyRight);
     if(ctrl)
         tog(keyCtrl);
-    await timeout(getMob(me).cur_speed);
+    await timeout(m.cur_speed);
 }
 
 async function Space()
@@ -105,17 +106,17 @@ async function repair(slot)
     key7.press();
     await timeout(500);
     await drop(slot,1);
-    await Down(0,1);
-    await Up(1,1);
+    await Right(0,1);
+    await Left(1,1);
     while(!checkchat(/(perfect)/,jv.chat_fade.cachedTint))
     {
         if((!item_data[6].slot)&&(!window.repkit))
             return false;
         await timeout(1000);
     }
-    await Up(0,1);
+    await Left(0,1);
     keyShift.press();
-    await timeout(getMob(me).cur_speed);
+    await timeout(m.cur_speed);
     return true;
 }
 
@@ -146,7 +147,7 @@ async function selfdef()
         if(hp_status.val<100)
         {
             a=mobs.items.find((tar)=>{
-                if((tar)&&(dist(tar.x-getMob(me).x,tar.y-getMob(me).y)<2)&&(dist(tar.x-getMob(me).x,tar.y-getMob(me).y)>0))
+                if((tar)&&(dist(tar.x-m.x,tar.y-m.y)<2)&&(dist(tar.x-m.x,tar.y-m.y)>0))
                     return true;
                 return false;
             });
@@ -177,11 +178,55 @@ async function repkitroll(from,to)
         {
             await drop(slots[count],1)
             keyShift.press();
-            await timeout(getMob(me).cur_speed);
+            await timeout(m.cur_speed);
             key7.press();
             count++;
         }
         await timeout(1000);
     }
     window.repkit=0;
+}
+
+
+async function hittrain()
+{
+    m=getMob(me)
+    while(item_data[1].slot&&item_data[6].slot)
+    {
+        if((map_index[(m.x-1)+'0'+(m.y)].o[0].hpbar)&&(map_index[(m.x-1)+'0'+(m.y)].o[0].hpbar.val<300))
+        {
+            key7.press();
+			Left(0,1);
+            await checkHP(m,1,0);
+			//Up(0,1);
+			//await checkHP(m,0,1);
+			//Down(0,1);
+			//await checkHP(m,0,-1);
+			//Left(0,1);
+            key2.press();
+            await timeout(500);
+        }
+        if(brk(1))
+        {
+            fixed=await repair(1);
+            if(!fixed)
+                return -1;
+            key2.press();
+            await timeout(500);
+        }
+        await timeout(1000);
+        
+    }
+}
+
+async function checkHP(m,x,y)
+{
+    while(1)
+    {
+    if((map_index[(m.x-x)+'0'+(m.y-y)].o[0].hpbar)&&(map_index[(m.x-x)+'0'+(m.y-y)].o[0].hpbar.val==map_index[(m.x-x)+'0'+(m.y-y)].o[0].hpbar.max))
+    {
+        return;
+    }
+    await timeout(1000);
+    }
 }
