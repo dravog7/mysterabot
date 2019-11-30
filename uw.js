@@ -30,7 +30,7 @@ async function uwdetect()
         }
     }run();
 }
-
+uwdetect();
 // Healing Fountain
 // Crystal Rock
 // Glowing Altar
