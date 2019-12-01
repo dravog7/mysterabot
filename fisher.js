@@ -36,3 +36,4 @@ async function fish()
 		await clicker();
 	}
 }
+f=fish();

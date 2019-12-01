@@ -12,6 +12,7 @@ async function loadList()
 }
 window.addEventListener("load",function(){
     loadList();
+    setZero();
 });
 
 function listify(data,list)
@@ -26,4 +27,9 @@ function listify(data,list)
         ele.addEventListener("click",frontpage);
         list.appendChild(ele);
     }
+}
+
+async function setZero()
+{
+    await new Promise(resolve => chrome.storage.local.set({"uw":0},resolve));
 }

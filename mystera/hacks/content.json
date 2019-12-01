@@ -3,5 +3,10 @@
         "name":"UW Detect",
         "front":"hacks/uwdetect/front.html",
         "inject":"hacks/uwdetect/uw.js"
+    },
+    {
+        "name":"Auto-Fish",
+        "front":"hacks/fish/front.html",
+        "inject":""
     }
 ]
