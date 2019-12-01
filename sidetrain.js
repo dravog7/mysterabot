@@ -127,9 +127,15 @@ async function hunger()
 {
     while(1)
     {
-        if(hunger_status.val<1)
-            key4.press();
-        await timeout(3000);
+        if(hunger_status.val<40)
+        {
+            for(i=0;i<4;i++)
+            {
+                key4.press();await timeout(150);
+            }
+            
+        }
+        await timeout(10000);
     }
 }
 
@@ -194,6 +200,7 @@ async function repkitroll(from,to)
 async function hittrain()
 {
     m=getMob(me)
+    hunger();
     while(item_data[1].slot&&item_data[6].slot)
     {
         if((map_index[(m.x-1)+'0'+(m.y)].o[0].hpbar)&&(map_index[(m.x-1)+'0'+(m.y)].o[0].hpbar.val<300))
