@@ -8,5 +8,10 @@
         "name":"Auto-Fish",
         "front":"hacks/fish/front.html",
         "inject":""
+    },
+    {
+        "name":"UI-mod",
+        "front":"hacks/UI/front.html",
+        "inject":""
     }
 ]

@@ -14,7 +14,6 @@ window.addEventListener("load",function(){
     loadList();
     setZero();
 });
-
 function listify(data,list)
 {
     for(i in data)
@@ -31,5 +30,18 @@ function listify(data,list)
 
 async function setZero()
 {
-    await new Promise(resolve => chrome.storage.local.set({"uw":0},resolve));
+    tabs=await new Promise((resolve)=>{chrome.tabs.query({active: true, currentWindow: true}, resolve);});
+    chrome.tabs.executeScript(
+        tabs[0].id,
+        {code: checkloads()}
+    );
+}
+
+function checkloads()
+{
+    text="async function check(){";
+    text+="a={'uw':!!document.getElementById('uwdetect'),'fish':!!document.getElementById('fish')};";
+    text+="console.log(a);";
+    text+="chrome.storage.local.set(a,()=>{console.log('loaded')});";
+    text+="}check();"
 }
