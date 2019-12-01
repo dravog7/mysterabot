@@ -111,7 +111,10 @@ async function repair(slot)
     while(!checkchat(/(perfect)/,jv.chat_fade.cachedTint))
     {
         if((!item_data[6].slot)&&(!window.repkit))
+        {
+            console.log(window.repkit);
             return false;
+        }
         await timeout(1000);
     }
     await Left(0,1);
@@ -211,6 +214,7 @@ async function hittrain()
             fixed=await repair(1);
             if(!fixed)
                 return -1;
+            console.log("fixed!");
             key2.press();
             await timeout(500);
         }
@@ -230,3 +234,4 @@ async function checkHP(m,x,y)
     await timeout(1000);
     }
 }
+hit=hittrain();

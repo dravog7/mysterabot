@@ -1,3 +1,4 @@
+keyG=jv.keyboard(71);
 async function craft(){
     while(keyG.isUp){
         jv.build_dialog.info.use.on_click();

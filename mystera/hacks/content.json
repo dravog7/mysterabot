@@ -13,5 +13,15 @@
         "name":"UI-mod",
         "front":"hacks/UI/front.html",
         "inject":""
+    },
+    {
+        "name":"craft",
+        "front":"hacks/craft/front.html",
+        "inject":""
+    },
+    {
+        "name":"side-hit",
+        "front":"hacks/sidehit/front.html",
+        "inject":""
     }
 ]
