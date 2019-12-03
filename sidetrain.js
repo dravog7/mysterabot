@@ -115,7 +115,7 @@ async function repair(slot)
             console.log(window.repkit);
             return false;
         }
-        await timeout(1000);
+        await timeout(500);
     }
     await Left(0,1);
     keyShift.press();
