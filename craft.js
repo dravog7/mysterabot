@@ -41,7 +41,7 @@ async function equip(i) {
 }
 
 async function pickupall() {
-    while(item_data[74].slot)
+    while(!item_data[74].slot)
     {
         keyShift.press();
         await timeout(200);
@@ -60,10 +60,11 @@ async function advsorter(type,f,t)
 		}
 		await equip(i);
 		//capture text
-		await timeout(500);
+		await timeout(1000);
+		tex=""
 		for(j=jv.chat_box.lines.length-1;j>last;j--)
 		{
-			if(/You hold/.test(jv.chat_box.lines[j].text))
+			if((/((You hold)|(You equip)|(You wear))/.test(jv.chat_box.lines[j].text)))
 			{
 				last=j;
 				tex=jv.chat_box.lines[j].text;
@@ -80,7 +81,9 @@ async function advsorter(type,f,t)
 		s=(s)?Number(s[1]):0;
 		h=(h)?Number(h[1]):0;
 		g=(g)?Number(g[1]):0;
-		let q=single(a,r,s,h,g);
+		console.log(tex);
+		console.log(a+" "+r+" "+s+" "+h+" "+g);
+		let q=major(a,r,s,h,g);
 		console.log(q);
 		if(q==type)
 		{
@@ -94,7 +97,9 @@ function major(a,r,s,h,g)
 {
 	let arr=["a","r","s","h","g"];
 	let vals=[a,r,s,h,g];
-	let maxi=vals.reduce((q,w)=>{return Math.max(q,w);},0)
+	let maxi=vals.reduce((q,w)=>{return Math.max(q,w);},-1)
+	if(maxi==-1)
+		return "";
 	return arr[vals.indexOf(maxi)];
 }
 
