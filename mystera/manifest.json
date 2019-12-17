@@ -2,7 +2,7 @@
     "name": "MysterA",
     "version": "1.0",
     "description": "A script plugin",
-    "permissions": ["storage","declarativeContent","tabs","http://www.mysteralegacy.com/play/full.php"],
+    "permissions": ["storage","declarativeContent","tabs","https://www.mysteralegacy.com/play/full.php","http://www.mysteralegacy.com/play/full.php"],
     "background": {
       "scripts": ["background.js"],
       "persistent": false
