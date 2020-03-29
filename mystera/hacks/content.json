@@ -15,18 +15,23 @@
         "inject":""
     },
     {
-        "name":"craft (TODO)",
-        "front":"hacks/craft/front.html",
-        "inject":""
-    },
-    {
-        "name":"side-hit",
+        "name":"weapon train",
         "front":"hacks/sidehit/front.html",
         "inject":""
     },
     {
         "name":"top-skill-calc",
         "front":"hacks/topskill/front.html",
+        "inject":""
+    },
+    {
+        "name":"chop",
+        "front":"hacks/chop/front.html",
+        "inject":""
+    },
+    {
+        "name":"dye",
+        "front":"hacks/dye/front.html",
         "inject":""
     }
 ]

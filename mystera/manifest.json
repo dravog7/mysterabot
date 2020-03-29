@@ -1,8 +1,14 @@
 {
     "name": "MysterA",
-    "version": "1.0",
+    "version": "1.0","manifest_version": 2,
     "description": "A script plugin",
-    "permissions": ["storage","declarativeContent","tabs","https://www.mysteralegacy.com/play/full.php","http://www.mysteralegacy.com/play/full.php"],
+    "permissions": [
+      "storage",
+      "declarativeContent",
+      "tabs",
+      "https://www.mysteralegacy.com/play/full.php",
+      "http://www.mysteralegacy.com/play/full.php"
+    ],
     "background": {
       "scripts": ["background.js"],
       "persistent": false
@@ -10,8 +16,16 @@
     "page_action": {
         "default_popup": "popup.html"
     },
+    "content_scripts": [
+      {
+        "matches": ["*://www.mysteralegacy.com/play/full.php"],
+        "js": ["content.js"]
+      }
+    ],
     "icons": {
         "48": "icon.png"
     },
-    "manifest_version": 2
+    "web_accessible_resources":[
+      "dist/*"
+    ]
   }

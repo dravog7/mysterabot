@@ -1,12 +1,4 @@
-function timeout(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function clicker(){
-keySpace.isDown=1;keySpace.isUp=0;
-await timeout(100);
-keySpace.isDown=0;keySpace.isUp=1;
-}
+import {timeout,clicker} from "../utils/basics.js";
 
 function checkchat(rege,color)
 {
@@ -24,7 +16,7 @@ function checkchat(rege,color)
     }
 }
 
-async function fish()
+export async function fish()
 {
 	while(item_data[1].slot&&item_data[2].slot&&keyEnter.isUp)
 	{
@@ -36,4 +28,3 @@ async function fish()
 		await clicker();
 	}
 }
-f=fish();

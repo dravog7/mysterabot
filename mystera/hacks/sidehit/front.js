@@ -1,46 +1,58 @@
-function loadScript()
-{
-    text="s=document.createElement('script');";
-    text+="s.id='hittrain';"
-    text+="s.src='https://dravog7.github.io/mysterabot/sidetrain.js';";
-    text+="document.body.appendChild(s);";
-    return text;
+var ele=document.getElementById("start");
+
+async function injectCode() {
+    console.log("hey");
+    let tab = await getTab();
+    if(getSign()) {
+        console.log("inside");
+        await sendMessage(tab,{
+            type:"callfunc",
+            name:"trainbot",
+            args:[`"${document.getElementById("dir").value}"`],
+        });
+        setSign((await getStatus())['hittrain']);
+    }
 }
 
-function unloadScript()
-{
-    text="a=document.getElementById('hittrain');";
-    text+="a.parentNode.removeChild(a);"
-    return text;
+function sendMessage(tab,msg) {
+    
+    return new Promise((resolve)=>{
+        chrome.tabs.sendMessage(tab[0].id,msg,resolve);
+    });
 }
-async function injectCode(e)
-{
-    data=await new Promise((resolve)=>{chrome.storage.local.get("hit",resolve);});
-    data=data.hit;
-    tabs=await new Promise((resolve)=>{chrome.tabs.query({active: true, currentWindow: true}, resolve);});
-    if(!data)
-    {
-        chrome.tabs.executeScript(
-            tabs[0].id,
-            {code: loadScript()}
-        );
+
+async function getTab() {
+    return await new Promise((resolve)=>{
+        chrome.tabs.query({active: true, currentWindow: true}, resolve);
+    });
+}
+
+function setSign(cond){
+    if(cond){
+        ele.innerText="Drop equip at slot 1 or 7 to stop!";
+        ele.setAttribute("disabled",true)
     }
-    else
-    {
-        chrome.tabs.executeScript(
-            tabs[0].id,
-            {code: unloadScript()}
-        );
+    else {
+        ele.innerText="Add hit script!";
     }
-    data=!data;
-    await new Promise((resolve)=>{chrome.storage.local.set({"hit":data},resolve);});
-    document.getElementById("start").innerHTML=(data)?"Remove hit script!":"Add hit script!";
+}
+
+function getSign() {
+    return ele.innerText=="Add hit script!";
+}
+
+async function getStatus(){
+    let tab = await getTab();
+    return await sendMessage(tab,{
+        type:"status",
+    });
 }
 async function setup()
 {
-    data=await new Promise((resolve)=>{chrome.storage.local.get("hit",resolve);});
-    ele=document.getElementById("start");
-    ele.innerText=(data==1)?"Remove hit script!":"Add hit script!";
+    ele = document.getElementById("start");
+    console.log(ele);
+    setSign((await getStatus())['hittrain']);
     ele.addEventListener("click",injectCode);
 }
-setup();
+
+window.addEventListener('DOMContentLoaded',setup);
