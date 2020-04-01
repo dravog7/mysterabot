@@ -10,7 +10,7 @@ deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
   file_glob: true
-  file: mystera/*
+  file: mystera/**/**
   skip_cleanup: true
   on:
     tags: true
