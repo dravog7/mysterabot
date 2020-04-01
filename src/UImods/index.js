@@ -1,1 +1,0 @@
-import {textMods} from "./UIcomponents/coordsUI.js";

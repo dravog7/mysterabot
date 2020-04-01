@@ -11,13 +11,11 @@ export async function dye()
 	while(item_data[2].slot)
 	{
 		key1.press();
-		await timeout(500);
+		await timeout(300);
 		await clicker();
-		await timeout(500);
+		await timeout(300);
 		await drop(0,1);
-		await timeout(500);
 		await drop(2,1);
 		keyShift.press();
-		await timeout(500);
 	}
 }

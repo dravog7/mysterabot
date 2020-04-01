@@ -33,5 +33,25 @@
         "name":"dye",
         "front":"hacks/dye/front.html",
         "inject":""
+    },
+    {
+        "name":"sword train",
+        "front":"hacks/swordTrain/front.html",
+        "inject":""
+    },
+    {
+        "name":"hammer train",
+        "front":"hacks/hammerTrain/front.html",
+        "inject":""
+    },
+    {
+        "name":"smelt",
+        "front":"hacks/smelt/front.html",
+        "inject":""
+    },
+    {
+        "name":"knit",
+        "front":"hacks/knit/front.html",
+        "inject":""
     }
 ]

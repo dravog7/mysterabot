@@ -41,7 +41,6 @@ export function addStatus(name,func) {
             } catch (error) {
                 console.log(error);
             }
-            deactivate(name);
             return re;
         }
 }

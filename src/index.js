@@ -1,4 +1,4 @@
-import { addAsyncStatus } from "./utils/statusupdater.js";
+import { addAsyncStatus,addStatus } from "./utils/statusupdater.js";
 
 import { hittrain,swordTrain, hammerTrain } from "./bots/train.js";
 import { chop } from  "./bots/chop.js";
@@ -11,16 +11,20 @@ import { knit } from "./bots/knit.js";
 import { textMods } from "./UImods/coordsUI.js";
 import { uwdetect } from "./UImods/uw.js";
 import { heal } from "./bots/heal.js";
+import { smelt } from "./UImods/smelt.js";
 
 export var trainbot = addAsyncStatus("hittrain",hittrain);
 export var swordbot = addAsyncStatus("swordTrain",swordTrain);
 export var hammerbot = addAsyncStatus("hammerTrain",hammerTrain);
+
 export var chopbot = addAsyncStatus("chop",chop);
 export var fishbot = addAsyncStatus("fish",fish);
 export var repairbot = addAsyncStatus("autorepair",autorepair);
-export var sinbot = addAsyncStatus("assa",assa);
+export var sinbot = addAsyncStatus("assa",assa); //TODO
 export var dyebot = addAsyncStatus("dye",dye);
-export var knitbot = addAsyncStatus("knit",knit);
-export var healbot = addAsyncStatus("heal",heal);
+export var knitbot = addAsyncStatus("knit",knit); //TODO
+export var healbot = addAsyncStatus("heal",heal); //TODO
+
 export var uimod1 = addAsyncStatus("textmod",textMods);
 export var uw = addAsyncStatus("uwdetect",uwdetect);
+export var smeltctrl = addStatus("smelt",smelt);

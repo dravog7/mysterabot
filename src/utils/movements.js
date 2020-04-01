@@ -17,7 +17,7 @@ export async function drop(slot,amt)
         slot: slot,
         amt :amt,
     })
-    await timeout(getMob(me).cur_speed);
+    await timeout(500);
 }
 
 
