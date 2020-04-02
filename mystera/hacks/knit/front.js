@@ -5,7 +5,7 @@ async function injectCode() {
     if(getSign()) {
         await sendMessage(tab,{
             type:"callfunc",
-            name:"uw",
+            name:"knit",
             args:[],
         });
         setSign(true);
@@ -27,16 +27,16 @@ async function getTab() {
 
 function setSign(cond){
     if(cond){
-        ele.innerText="reload";
+        ele.innerText="empty slot 0 and slot 1";
         ele.setAttribute("disabled",true)
     }
     else {
-        ele.innerText="Add uw script!";
+        ele.innerText="Add knit script!";
     }
 }
 
 function getSign() {
-    return ele.innerText=="Add uw script!";
+    return ele.innerText=="Add knit script!";
 }
 
 async function getStatus(){
@@ -49,7 +49,7 @@ async function setup()
 {
     ele = document.getElementById("start");
     console.log(ele);
-    setSign((await getStatus())['uwdetect']);
+    setSign((await getStatus())['knit']);
     ele.addEventListener("click",injectCode);
 }
 

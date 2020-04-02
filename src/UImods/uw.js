@@ -1,8 +1,8 @@
-async function uwdetect()
+export async function uwdetect()
 {
-    found=[];
-	count=0;
-    title=jv.map_title.text;
+    let found=[];
+	let count=0;
+    let title=jv.map_title.text;
     function run()
     {
 		requestAnimationFrame(run);
@@ -17,7 +17,7 @@ async function uwdetect()
                     return (map_index[i].o[0].x==m.x)&&(map_index[i].o[0].y==m.y);
                 }))
                 {
-                    coords={x:map_index[i].o[0].x,y:map_index[i].o[0].y};
+                    let coords={x:map_index[i].o[0].x,y:map_index[i].o[0].y};
                     append(map_index[i].o[0].name+' at '+coords.x+","+coords.y);
                     found.push(coords);
                 }
@@ -30,7 +30,6 @@ async function uwdetect()
         }
     }run();
 }
-uwdetect();
 // Healing Fountain
 // Crystal Rock
 // Glowing Altar

@@ -1,0 +1,25 @@
+{
+  "name": "mysterabot",
+  "version": "1.0.0",
+  "description": "- copy paste basic.js if the file u need has that as requirement\r - copy paste the file you need\r - COPY TO THE CONSOLE AND PRESS ENTER BOTH TIMES\r - call the function you need",
+  "private":true,
+  "scripts": {
+    "build":"webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dravog7/mysterabot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dravog7/mysterabot/issues"
+  },
+  "homepage": "https://github.com/dravog7/mysterabot#readme",
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}

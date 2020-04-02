@@ -5,7 +5,7 @@ async function injectCode() {
     if(getSign()) {
         await sendMessage(tab,{
             type:"callfunc",
-            name:"uw",
+            name:"smeltctrl",
             args:[],
         });
         setSign(true);
@@ -31,12 +31,12 @@ function setSign(cond){
         ele.setAttribute("disabled",true)
     }
     else {
-        ele.innerText="Add uw script!";
+        ele.innerText="Add smelt script!";
     }
 }
 
 function getSign() {
-    return ele.innerText=="Add uw script!";
+    return ele.innerText=="Add smelt script!";
 }
 
 async function getStatus(){
@@ -49,7 +49,7 @@ async function setup()
 {
     ele = document.getElementById("start");
     console.log(ele);
-    setSign((await getStatus())['uwdetect']);
+    setSign((await getStatus())['smelt']);
     ele.addEventListener("click",injectCode);
 }
 

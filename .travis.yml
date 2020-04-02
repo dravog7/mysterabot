@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+script:
+  - npm run build
+before_deploy:
+  - tar -zcf source.tar.gz mystera
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: source.tar.gz
+  skip_cleanup: true
+  on:
+    tags: true
+    branch: master

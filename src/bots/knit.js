@@ -22,7 +22,7 @@ function checkstatus(rege)
 	return false;
 }
 
-async function knit()
+export async function knit()
 {
 	await clicker();
 	while(item_data[1].slot&&item_data[2].slot&&keyEnter.isUp)
@@ -35,4 +35,3 @@ async function knit()
 		await clicker();
 	}
 }
-f=knit();

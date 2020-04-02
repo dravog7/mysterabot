@@ -1,14 +1,16 @@
 var ele=document.getElementById("start");
 
 async function injectCode() {
+    console.log("hey");
     let tab = await getTab();
     if(getSign()) {
+        console.log("inside");
         await sendMessage(tab,{
             type:"callfunc",
-            name:"uw",
-            args:[],
+            name:"hammerbot",
+            args:[`"${document.getElementById("dir").value}"`],
         });
-        setSign(true);
+        setSign((await getStatus())['hammerTrain']);
     }
 }
 
@@ -27,16 +29,16 @@ async function getTab() {
 
 function setSign(cond){
     if(cond){
-        ele.innerText="reload";
+        ele.innerText="Drop equip at slot 1 or 7 to stop!";
         ele.setAttribute("disabled",true)
     }
     else {
-        ele.innerText="Add uw script!";
+        ele.innerText="Add hit script!";
     }
 }
 
 function getSign() {
-    return ele.innerText=="Add uw script!";
+    return ele.innerText=="Add hit script!";
 }
 
 async function getStatus(){
@@ -49,7 +51,7 @@ async function setup()
 {
     ele = document.getElementById("start");
     console.log(ele);
-    setSign((await getStatus())['uwdetect']);
+    setSign((await getStatus())['hammerTrain']);
     ele.addEventListener("click",injectCode);
 }
 

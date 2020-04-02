@@ -1,26 +1,15 @@
-keyG=jv.keyboard(71);
-async function craft(){
+import {timeout} from "../utils/basics.js";
+import {drop} from "../utils/movements.js";
+
+let keyG=jv.keyboard(71);
+export async function craft(){
     while(keyG.isUp){
         jv.build_dialog.info.use.on_click();
         await timeout(250);
     }
 }
 
-function timeout(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function drop(slot,amt)
-{
-    send({
-        type: 'd',
-        slot: slot,
-        amt :amt,
-    })
-    await timeout(m.cur_speed);
-}
-m=getMob(me)
-async function craftsorter(f,to){
+export async function craftsorter(f,to){
     //remove unruned
     for(i=f;i<=to;i++)
     {
@@ -32,7 +21,7 @@ async function craftsorter(f,to){
     }
 }
 
-async function equip(i) {
+export async function equip(i) {
     send({
         type: "u",
         slot: i
@@ -40,7 +29,7 @@ async function equip(i) {
     await timeout(250);
 }
 
-async function pickupall() {
+export async function pickupall() {
     while(!item_data[74].slot)
     {
         keyShift.press();
@@ -48,7 +37,7 @@ async function pickupall() {
     }
 }
 
-async function advsorter(type,f,t)
+export async function advsorter(type,f,t)
 {
 	last=jv.chat_box.lines.length;
 	await timeout(1000);
@@ -122,7 +111,7 @@ function single(a,r,s,h,g)
 	
 }
 
-async  function cleanup(f,t)
+export async  function cleanup(f,t)
 {
 	for(let i=f;i<=t;i++)
 	{

@@ -15,18 +15,43 @@
         "inject":""
     },
     {
-        "name":"craft (TODO)",
-        "front":"hacks/craft/front.html",
-        "inject":""
-    },
-    {
-        "name":"side-hit",
+        "name":"weapon train",
         "front":"hacks/sidehit/front.html",
         "inject":""
     },
     {
         "name":"top-skill-calc",
         "front":"hacks/topskill/front.html",
+        "inject":""
+    },
+    {
+        "name":"chop",
+        "front":"hacks/chop/front.html",
+        "inject":""
+    },
+    {
+        "name":"dye",
+        "front":"hacks/dye/front.html",
+        "inject":""
+    },
+    {
+        "name":"sword train",
+        "front":"hacks/swordTrain/front.html",
+        "inject":""
+    },
+    {
+        "name":"hammer train",
+        "front":"hacks/hammerTrain/front.html",
+        "inject":""
+    },
+    {
+        "name":"smelt",
+        "front":"hacks/smelt/front.html",
+        "inject":""
+    },
+    {
+        "name":"knit",
+        "front":"hacks/knit/front.html",
         "inject":""
     }
 ]
